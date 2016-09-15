@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+
+declare SOURCE={{pkg.path}}/../../../../core/nginx/1.10.1/20160902203245/config;
+declare TRANSIENT={{pkg.svc_path}}/tmp;
+declare TARGET={{pkg.svc_path}}/config;
+
+mkdir -p ${TRANSIENT};
+
+cp ${SOURCE}/* ${TRANSIENT}; 
+rm -f ${TRANSIENT}/nginx.conf; # don't want to overwrite out own nginc.conf
+
+cp ${TRANSIENT}/* ${TARGET};
+
+rm -fr ${TRANSIENT}; # don't need that directory anymore
+
+echo ">> INIT... ... ... ... ... ... ... ... ...<<";
+ls -l ${TARGET};
+echo ">> ********************************  INIT <<";
+
+# echo ">> ... ... ... ... ... ... ... ... ... ...<<";
+
+# OLD_NGINX_CONF_DIR={{pkg.path}}/../../../../core/nginx/1.10.1/20160902203245/config;
+# NEW_NGINX_DIR=/hab/svc/nginx;
+# NEW_NGINX_CONF_DIR=${NEW_NGINX_DIR}/config;
+
+# cat          ${OLD_NGINX_CONF_DIR}/nginx.conf;
+
+# rm -fr       ${NEW_NGINX_DIR};
+# mkdir -p     ${NEW_NGINX_CONF_DIR};
+
+# echo "cp ${OLD_NGINX_CONF_DIR}/nginx.conf ${NEW_NGINX_CONF_DIR};";
+# cp ${OLD_NGINX_CONF_DIR}/nginx.conf ${NEW_NGINX_CONF_DIR};
+
+# echo ">>****************************************<<";
